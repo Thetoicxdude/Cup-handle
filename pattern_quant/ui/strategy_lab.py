@@ -29,14 +29,14 @@ class StrategyParameters:
         trailing_ratio: 移動止盈回調比例 (%)
         score_threshold: 吻合分數閾值
     """
-    min_depth: float = 12.0
-    max_depth: float = 33.0
-    min_cup_days: int = 30
-    max_cup_days: int = 150
+    min_depth: float = 14.0
+    max_depth: float = 28.0
+    min_cup_days: int = 20
+    max_cup_days: int = 220
     stop_loss_ratio: float = 5.0
-    profit_threshold: float = 10.0
-    trailing_ratio: float = 3.0
-    score_threshold: float = 80.0
+    profit_threshold: float = 12.0
+    trailing_ratio: float = 9.0
+    score_threshold: float = 65.0
 
 
 @dataclass
