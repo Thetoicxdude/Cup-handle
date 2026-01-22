@@ -96,7 +96,7 @@ def main():
         # 選擇版本
         lab_version = st.sidebar.radio(
             "實驗室版本",
-            options=["增強版（真實數據）", "基礎版（模擬數據）"],
+            options=["基礎版（模擬數據）", "增強版（真實數據）"],
             index=0
         )
         
@@ -106,12 +106,15 @@ def main():
                 lab = EnhancedStrategyLab()
                 lab.render()
             except ImportError as e:
-                st.error(f"無法載入增強版策略實驗室: {e}")
-                st.info("請確保已安裝 yfinance: pip install yfinance")
+                st.warning(f"無法載入增強版策略實驗室: {e}")
+                st.info("自動切換到基礎版（模擬數據）")
                 # 回退到基礎版
                 from pattern_quant.ui.strategy_lab import StrategyLab, BacktestEngine
                 lab = StrategyLab(backtest_engine=BacktestEngine())
                 lab.render()
+            except Exception as e:
+                st.error(f"策略實驗室發生錯誤: {e}")
+                st.info("請嘗試重新整理頁面")
         else:
             from pattern_quant.ui.strategy_lab import StrategyLab, BacktestEngine
             lab = StrategyLab(backtest_engine=BacktestEngine())
