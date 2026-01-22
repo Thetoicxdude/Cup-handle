@@ -4171,6 +4171,9 @@ class EnhancedStrategyLab:
                 st.error("❌ 請至少選擇一支股票")
                 return
             
+            # 調試信息
+            st.info(f"🔍 開始回測 - 演化優化: {evolution_config is not None and evolution_config.enabled if evolution_config else False}, 雙引擎: {dual_engine_config is not None and dual_engine_config.enabled if dual_engine_config else False}")
+            
             # 檢查是否執行參數掃描
             if sweep_config and sweep_config.get("enabled"):
                 try:
@@ -4311,9 +4314,15 @@ class EnhancedStrategyLab:
             except ValueError as e:
                 # 處理找不到股票等錯誤
                 st.error(f"❌ 回測失敗：{str(e)}")
+                import traceback
+                with st.expander("查看詳細錯誤"):
+                    st.code(traceback.format_exc())
             except Exception as e:
                 # 處理其他未預期的錯誤
                 st.error(f"❌ 回測發生錯誤：{str(e)}")
+                import traceback
+                with st.expander("查看詳細錯誤"):
+                    st.code(traceback.format_exc())
         
         # 顯示上次結果
         elif 'last_enhanced_backtest' in st.session_state:
