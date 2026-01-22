@@ -4174,6 +4174,12 @@ class EnhancedStrategyLab:
             # 調試信息
             st.info(f"🔍 開始回測 - 演化優化: {evolution_config is not None and evolution_config.enabled if evolution_config else False}, 雙引擎: {dual_engine_config is not None and dual_engine_config.enabled if dual_engine_config else False}")
             
+            # 顯示詳細配置信息
+            if evolution_config and evolution_config.enabled:
+                st.success(f"✅ 演化優化已啟用 - 種群: {evolution_config.population_size}, 世代: {evolution_config.max_generations}")
+            if dual_engine_config and dual_engine_config.enabled:
+                st.success(f"✅ 雙引擎已啟用 - 趨勢閾值: {dual_engine_config.adx_trend_threshold}, 震盪閾值: {dual_engine_config.adx_range_threshold}")
+            
             # 檢查是否執行參數掃描
             if sweep_config and sweep_config.get("enabled"):
                 try:
