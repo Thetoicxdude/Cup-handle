@@ -103,14 +103,14 @@ class MixedPortfolioConfig:
 @dataclass
 class StrategyParameters:
     """策略參數配置"""
-    min_depth: float = 8.0  # 降低最小深度要求
-    max_depth: float = 45.0  # 提高最大深度容許
-    min_cup_days: int = 15  # 降低最小天數
-    max_cup_days: int = 200  # 提高最大天數
-    stop_loss_ratio: float = 8.0  # 放寬止損
-    profit_threshold: float = 10.0
-    trailing_ratio: float = 3.0
-    score_threshold: float = 60.0  # 降低分數門檻
+    min_depth: float = 14.0  # 最小杯身深度 (%)
+    max_depth: float = 28.0  # 最大杯身深度 (%)
+    min_cup_days: int = 20  # 最小成型天數
+    max_cup_days: int = 220  # 最大成型天數
+    stop_loss_ratio: float = 5.0  # 止損比例 (%)
+    profit_threshold: float = 12.0  # 移動止盈啟動閾值 (%)
+    trailing_ratio: float = 9.0  # 移動止盈回調比例 (%)
+    score_threshold: float = 65.0  # 吻合分數閾值
     position_size: float = 10.0  # 每筆交易倉位比例 (%)
     # 投資組合配置
     portfolio_allocations: Optional[List['PortfolioAllocation']] = None
