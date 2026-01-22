@@ -6,45 +6,21 @@ Usage:
     Run the dashboard with: streamlit run pattern_quant/ui/app.py
     
     Or programmatically:
-        from pattern_quant.ui import Dashboard, run_dashboard
+        from pattern_quant.ui.dashboard import Dashboard, run_dashboard
         run_dashboard()
         
-        from pattern_quant.ui import StrategyLab, run_strategy_lab
+        from pattern_quant.ui.strategy_lab import StrategyLab, run_strategy_lab
         run_strategy_lab()
         
-        from pattern_quant.ui import ChartView, render_chart_page
+        from pattern_quant.ui.chart_view import ChartView, render_chart_page
         render_chart_page()
         
-        from pattern_quant.ui import EvolutionLab, run_evolution_lab
+        from pattern_quant.ui.evolution_lab import EvolutionLab, run_evolution_lab
         run_evolution_lab()
 """
 
-from pattern_quant.ui.dashboard import (
-    Dashboard,
-    PortfolioMetrics,
-    DataProvider,
-    MockDataProvider,
-    run_dashboard,
-)
-from pattern_quant.ui.data_provider import RepositoryDataProvider
-from pattern_quant.ui.strategy_lab import (
-    StrategyLab,
-    StrategyParameters,
-    BacktestEngine,
-    BacktestResult,
-    BacktestTrade,
-    run_strategy_lab,
-)
-from pattern_quant.ui.chart_view import (
-    ChartView,
-    ChartDataProvider,
-    MockChartDataProvider,
-    render_chart_page,
-)
-from pattern_quant.ui.evolution_lab import (
-    EvolutionLab,
-    run_evolution_lab,
-)
+# Lazy imports to avoid circular dependencies and reduce startup time
+# Import specific modules only when needed
 
 __all__ = [
     # Dashboard
