@@ -4277,27 +4277,16 @@ class EnhancedStrategyLab:
                         )
                 
                 with st.spinner("正在執行回測..." if not progressive_mode else ""):
-                    if baseline_result:
-                        result = self.backtest_engine.run_backtest_with_comparison(
-                            parameters=params,
-                            start_date=start_date,
-                            end_date=end_date,
-                            symbols=symbols,
-                            progress_callback=lambda msg, prog: update_progress(f"[當前] {msg}", 0.4 + prog * 0.5),
-                            baseline_result=baseline_result,
-                            portfolio_allocations=portfolio_allocations,
-                            progressive_callback=progressive_callback
-                        )
-                    else:
-                        result = self.backtest_engine.run_backtest(
-                            parameters=params,
-                            start_date=start_date,
-                            end_date=end_date,
-                            symbols=symbols,
-                            progress_callback=update_progress,
-                            portfolio_allocations=portfolio_allocations,
-                            progressive_callback=progressive_callback
-                        )
+                    # 執行當前參數的回測
+                    result = self.backtest_engine.run_backtest(
+                        parameters=params,
+                        start_date=start_date,
+                        end_date=end_date,
+                        symbols=symbols,
+                        progress_callback=lambda msg, prog: update_progress(f"[當前] {msg}", 0.4 + prog * 0.5) if baseline_result else update_progress,
+                        portfolio_allocations=portfolio_allocations,
+                        progressive_callback=progressive_callback
+                    )
                 
                 # 清空逐日模擬顯示
                 if progressive_containers:
